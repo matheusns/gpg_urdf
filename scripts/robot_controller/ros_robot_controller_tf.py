@@ -74,7 +74,6 @@ class RobotController:
 
     # The following lines are respective to exercise 2 item 'd'
     def goToGoal(self, goal_position):
-
         base_link_point = self.toBaseLinkPoint(goal_position)
 
         rospy.loginfo("Moving robot to the pose: (" + str(goal_position.x) + " , " + str(
@@ -93,7 +92,6 @@ class RobotController:
         rate = rospy.Rate(20)
 
         while self.euclideanDistance(goal_position) >= distance_tolerance:
-
             vel_msg.linear.x = self.linearVelocity(goal_position)
             vel_msg.angular.z = self.angularVelocity(goal_position)
 
@@ -106,7 +104,6 @@ class RobotController:
         self.velocity_publisher.publish(vel_msg)
 
     def toBaseLinkPoint (self, goal_position):
-
         stamped_goal = PointStamped()
         stamped_goal.header.frame_id = "/odom"
         stamped_goal.point.x = goal_position.x
